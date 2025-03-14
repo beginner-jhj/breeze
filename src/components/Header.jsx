@@ -71,8 +71,8 @@ export default function Header(){
     }, [expandVolumeRef]);
 
 
-    const saveUsername = (e)=>{
-        if(e.key === 'Enter' && username.trim() !== ''){
+    const saveUsername = ()=>{
+        if(username.trim() !== ''){
             localStorage.setItem("username", username);
             setIsStored(true);
         }
@@ -253,7 +253,8 @@ export default function Header(){
                     <input className={`w-[90%] border-b-2 border-slate-500 ${notSupportedLink ? "placeholder-red-300":"placeholder-slate-500"}`} placeholder={notSupportedLink ? "Not supported link":"Youtube link"} onKeyDown={verifyPastedLink} onChange={getYTvidioId}></input>
                 </div>
             </div>
-            {isStored ? <Greeting username={username} setIsStored={setIsStored}/>:<input className="w-1/3 h-8 bg-transparent border-b-2 border-white caret-white text-white placeholder:text-white" placeholder="What is your name?" onChange={(e)=>setUsername(e.target.value)} onKeyDown={saveUsername}></input>}
+            {isStored ? <Greeting username={username} setIsStored={setIsStored}/>:<input className="w-1/3 h-8 bg-transparent border-b-2 border-white caret-white text-white placeholder:text-white" placeholder="What is your name?" onChange={(e)=>setUsername(e.target.value)} onKeyDown={(e)=>{
+                if(e.key === "Enter"){saveUsername()}}} onBlur={saveUsername}></input>}
         </header>
     )
 }
