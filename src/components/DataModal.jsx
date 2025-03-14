@@ -17,11 +17,11 @@ export default function DataChartModal(){
     const setOpenDataModal = store(state=>state.setOpenDataModal);
     
     useEffect(()=>{
-        const tasksCountByDate = JSON.parse(localStorage.getItem("tasksByDate"));
+        const tasksCountByDate = JSON.parse(localStorage.getItem("tasksByDate"))||{};
         const tasksCountEntries = Object.entries(tasksCountByDate);
         const doneTasksByDate = JSON.parse(localStorage.getItem("doneTasksByDate"))||{};
         const doneTasksEntries = Object.entries(doneTasksByDate);
-        const focusedTimes = JSON.parse(localStorage.getItem("focusedTimes"));
+        const focusedTimes = JSON.parse(localStorage.getItem("focusedTimes"))||{};
         const focusedTimesEntries = Object.entries(focusedTimes);
     
         setTasksCounts(tasksCountEntries.map((item)=>item[1]));
